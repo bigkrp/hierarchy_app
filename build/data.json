@@ -1,0 +1,14 @@
+[
+  {"World": "Europe"},
+  {"World": "North America"},
+  {"Europe": "France"},
+  {"Europe": "Germany"},
+  {"France": "Paris"},
+  {"Germany": "Berlin"},
+  {"North America": "United States"},
+  {"North America": "Canada"},
+  {"United States": "New York"},
+  {"United States": "Washington"},
+  {"New York": "New York City"},
+  {"Washington": "Redmond"}
+]
