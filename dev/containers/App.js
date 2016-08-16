@@ -1,6 +1,24 @@
 import React, {PropTypes} from 'react';
-import { fetchDataIfNeeded } from '../actions';
+import { fetchDataIfNeeded, showLeafs } from '../actions';
 import { connect } from 'react-redux';
+
+let NodeSearch = ({ dispatch }) => {
+  let input;
+
+  return (
+    <div>
+      <input ref={node => {
+        input = node;
+      }} />
+      <button onClick={() => {
+        dispatch(showLeafs(input.value));
+        input.value = '';
+      }}>Search</button>
+    </div>
+  );
+};
+// mapStateToTodoNodeSearch
+NodeSearch = connect()(NodeSearch);
 
 class App extends React.Component {
   constructor(props) {
@@ -12,7 +30,12 @@ class App extends React.Component {
   }
 
   render() {
-    return (<div>MyComponent</div>);
+    console.log();
+    return (
+      <div>
+        <NodeSearch />
+      </div>
+    );
   }
 }
 

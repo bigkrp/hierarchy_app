@@ -4,21 +4,20 @@ export const GET_DATA = 'GET_DATA';
 export const SHOW_LEAF = 'SHOW_LEAF';
 
 export const fetchDataIfNeeded = () => {
-  return (dispatch, getState) => {
+  return (dispatch) => {
     if (localStorage.getItem('hierarchyData')) {
 
     } else {
       dispatch(fetchData());
     }
-  }
+  };
 };
 
 const fetchData = () => {
   return dispatch => {
     return fetch('./data.json')
       .then(response => response.json())
-      // .then(json => dispatch(receiveData(json)));
-      .then(json => console.log(json));
+      .then(json => dispatch(receiveData(json)));
   };
 };
 
@@ -29,10 +28,20 @@ const receiveData = (json) => {
   };
 };
 
-const data = fetch('./data.json')
-  .then(response => {
-    return response.json();
-  });
+export const showLeafs = (node) => {
+  // console.log('node', node);
+  return (dispatch, getState) => {
+    console.log(getState());
+    return {
+      type: SHOW_LEAF
+    }
+  };
+};
+
+// const data = fetch('./data.json')
+//   .then(response => {
+//     return response.json();
+//   });
 
 const leafs = [];
 // let result = [];
