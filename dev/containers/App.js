@@ -1,24 +1,10 @@
 import React, {PropTypes} from 'react';
-import { fetchDataIfNeeded, showLeafs } from '../actions';
+import { fetchDataIfNeeded } from '../actions';
 import { connect } from 'react-redux';
+import NodeSearch from '../components/NodeSearch';
+import LeafList from '../components/LeafList';
 
-let NodeSearch = ({ dispatch }) => {
-  let input;
 
-  return (
-    <div>
-      <input ref={node => {
-        input = node;
-      }} />
-      <button onClick={() => {
-        dispatch(showLeafs(input.value));
-        input.value = '';
-      }}>Search</button>
-    </div>
-  );
-};
-// mapStateToTodoNodeSearch
-NodeSearch = connect()(NodeSearch);
 
 class App extends React.Component {
   constructor(props) {
@@ -26,15 +12,15 @@ class App extends React.Component {
   }
   componentDidMount() {
     const { dispatch } = this.props;
-    dispatch(fetchDataIfNeeded())
+    dispatch(fetchDataIfNeeded());
   }
 
   render() {
-    console.log();
     return (
-      <div>
+      <section className='wrapper'>
         <NodeSearch />
-      </div>
+        <LeafList />
+      </section>
     );
   }
 }

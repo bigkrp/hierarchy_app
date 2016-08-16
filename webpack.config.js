@@ -4,6 +4,7 @@ var merge              = require('webpack-merge');
 var ExtractTextPlugin  = require('extract-text-webpack-plugin');
 // var HtmlWebpackPlugin  = require('html-webpack-plugin');
 // var CleanWebpackPlugin = require('clean-webpack-plugin');
+var extractCSS = new ExtractTextPlugin('[name].css');
 
 // var HTMLWebpackPluginConfig = new HtmlWebpackPlugin({
 //   template: __dirname + '/dev/index.html',
@@ -31,7 +32,7 @@ var common = {
     sourceMapFilename: '[file].map'
   },
   resolve: {
-    extensions: ['', '.js', '.jsx', '.less']
+    extensions: ['', '.js', '.jsx', '.scss']
   },
   // devtool: 'eval-source-map',
   module: {
@@ -43,10 +44,11 @@ var common = {
       test: /\.css$/,
       loader: ExtractTextPlugin.extract('style-loader', 'css-loader')
     }, {
-      test: /\.less$/,
-      loader: ExtractTextPlugin.extract('style-loader', 'css-loader?sourceMap!less-loader?sourceMap')
+      test: /\.scss$/i,
+      // loader: ExtractTextPlugin.extract('style', 'css?sourceMap!sass?sourceMap'),
+      loader: extractCSS.extract(['css?sourceMap','sass?sourceMap'])
     }, {
-      test: /\.woff$/,
+      test: /\.woff2?$/,
       loader: 'url-loader?limit=10000&mimetype=application/font-woff&name=[path][name].[ext]'
     }, {
       test: /\.(eot|ttf|svg|gif|png)$/,
@@ -58,13 +60,14 @@ var common = {
       $: 'jquery',
       jQuery: 'jquery'
     }),
-    new ExtractTextPlugin('[name].css')
+    extractCSS
+    // new ExtractTextPlugin('[name].css')
   ]
 };
 
 if (TARGET === 'dev' || !TARGET) {
   module.exports = merge(common, {
-    devtool: 'eval-source-map',
+    devtool: 'cheap-module-source-map',
     devServer: {
       port: 8090,
       historyApiFallback: true,
