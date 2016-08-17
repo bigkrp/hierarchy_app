@@ -3,6 +3,9 @@ $input-font-color: #777;
 $input-box-shadow-clr: rgba(236, 81, 234, 0.4);
 $btn-bg: #bc46ff;
 
+/**
+ * Main container
+ */
 .search {
   margin-top: 150px;
   display: -webkit-flex;
@@ -14,6 +17,9 @@ $btn-bg: #bc46ff;
   justify-content: center;
   align-items: center;
 
+  /**
+   * Pretty header
+   */
   &__title {
     font-family: 'Tangerine';
     font-size: 3rem;
@@ -41,6 +47,9 @@ $btn-bg: #bc46ff;
     }
   }
 
+  /**
+   * Search button
+   */
   &__action {
     padding: 8px 20px;
     border-radius: 4px;

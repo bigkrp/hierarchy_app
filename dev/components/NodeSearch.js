@@ -2,6 +2,10 @@ import React, {PropTypes} from 'react';
 import { showLeafs } from '../actions';
 import { connect } from 'react-redux';
 
+/**
+ * Component with input and searc btn
+ * @param {Function} dispatch - redux dispatch
+ */
 let NodeSearch = ({ dispatch }) => {
   let input;
 
